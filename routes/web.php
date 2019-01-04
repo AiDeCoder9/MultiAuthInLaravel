@@ -29,10 +29,10 @@ Route::get('admin/register','Admin\RegisterController@showRegistrationForm')->na
 
 Route::post('admin/register','Admin\RegisterController@register')->name('admin.register');
 
+//Auth::routes();
+Auth::routes(['verify'=>true]);
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
 
 Route::get('admin/home',function(){
     return view('admin.dashboard');
